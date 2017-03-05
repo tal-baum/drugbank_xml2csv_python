@@ -1,5 +1,10 @@
 # drugbank_xml2csv_python
-Python script for parsing DrugBank XML to CSV
+Python script for converting DrugBank XML to CSV. If loading CSV to a SQL database, a sample query is:  
+`select distinct drugbank_id, drugname, inhibitor, antagonist, agonist`  
+`from drugbank05_drug2target`  
+`join drugbank05_partner_protein using (partner_id)`  
+`join drugbank05_drugs using (drugbank_id)`  
+`where gene_name = 'KCNH2';`
 
 Tested on DrugBank 5 (3.4.17)
 

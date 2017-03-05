@@ -6,7 +6,7 @@ Python script for converting DrugBank XML to relational CSV files. If loading CS
 `join drugbank05_drugs using (drugbank_id)`  
 `where gene_name = 'KCNH2';`
 
-Tested on DrugBank 5 (3.4.17)
+Tested on DrugBank 5.0.5 (3.4.17)
 
 Dependencies: `lxml` 
 

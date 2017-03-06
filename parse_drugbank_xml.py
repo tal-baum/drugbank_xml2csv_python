@@ -215,7 +215,7 @@ print '\n'
 
 
 #######################################################################
-# List of drugs to save (as long as num_targets = num_enzymes = num_transporters = 0)
+# List of drugs to save (as long as num_targets + num_enzymes + num_transporters != 0)
 drugs = []
 for drugbank_id in sorted(drug2attrib.keys()):
     if len(drug2attrib[drugbank_id]['targets']) == 0 and len(drug2attrib[drugbank_id]['enzymes']) == 0 and len(drug2attrib[drugbank_id]['transporters']) == 0:
@@ -229,7 +229,6 @@ print len(drugs), "drugs with at least 1 target/ enzyme/ transporter"
 
 #######################################################################
 # Save drug attributes to CSV {'drugname', 'drug_type', 'groups', 'targets/enzymes/transporters': [_id, _actions]}
-longest_drugname = ''
 outf = open('drugbank05_drugs.csv', 'w')
 writer = csv.writer(outf)
 writer.writerow(['drugbank_id', 'drugname', 'drug_type', 'approved', 'experimental', 'illicit', 'investigational', 'nutraceutical', 'withdrawn'])
@@ -246,9 +245,6 @@ for drugbank_id in drugs:
     groups = [1 if group in drug2attrib[drugbank_id]['groups'] else 0 for group in ['approved', 'experimental', 'illicit', 'investigational', 'nutraceutical', 'withdrawn'] ]
     
     writer.writerow([drugbank_id, drugname, drug_type]+groups)
-    
-    if len(drugname) > len(longest_drugname):
-        longest_drugname = drugname
     
 outf.close()
 
